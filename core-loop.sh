@@ -8,7 +8,7 @@ export verbose_log="$base_directory/logs/verbose.log"
 export disk_log="$base_directory/logs/disk.log"
 export cpu_log="$base_directory/logs/cpu.log"
 export network_log="$base_directory/logs/network.log"
-export network_files_log="$base_directory/logs/network_files.log"
+export network_files_log="$base_directory/logs/network-files.log"
 #export ram_log="$base_directory/logs/ram.log"
 
 # Randomly assign an ID for this particular run

@@ -8,7 +8,7 @@ function fetchFromNetwork {
     # Select randomly from one of the possible images
     random_source=$(randArrayElement "possible_images[@]")
     sleep $fetch_sleep
-    echo -e "$(date -u) >>> After $fetch_sleep seconds sleep, saved $random_filename.png from $random_source" | tee -a $network_files_log $verbose_log
+    echo -e "$(date -u) >>> After $fetch_sleep seconds sleep, saved $random_filename.png from $random_source" | tee -a $network_files_log
     # Fetch the image and save with random file name
     wget -q "$random_source" -O $base_directory/network-files/$random_filename.png
 }
