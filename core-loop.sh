@@ -60,7 +60,7 @@ function diskStress {
 function cpuStress {
     cpu_run_id=$(shuf -i 1-1000000000 -n 1)
     echo -e "$(date -u) >> Started: CPU run $cpu_run_id" | tee -a $master_log $verbose_log
-    STRESS_TIME=$(shuf -i 480-720 -n 1)
+    stress_time=$(shuf -i 480-720 -n 1)
     echo -e "$(date -u) >>> Stress time: $stress_time seconds" | tee -a $cpu_log $verbose_log
     stress_cpu_load=$(shuf -i 10-30 -n 1)
     echo -e "$(date -u) >>> CPU load: $stress_cpu_load percent" | tee -a $cpu_log $verbose_log

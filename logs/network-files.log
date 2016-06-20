@@ -1,9 +1,0 @@
-Fri Jun 17 23:07:44 UTC 2016 >>> After sleeping 3, saved 391243979.png from https://newrelic.com/assets/newrelic/source/NewRelic-logo-square.png
-Fri Jun 17 23:07:48 UTC 2016 >>> After sleeping 3, saved 68681292.png from https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug-w.png
-Fri Jun 17 23:07:48 UTC 2016 >> Removing pngs: 391243979.png 68681292.png 
-Fri Jun 17 23:09:13 UTC 2016 >> Started: Network run 252133223
-Fri Jun 17 23:09:16 UTC 2016 >>> After 3 seconds sleep, saved 568334319.png from https://newrelic.com/assets/newrelic/source/NewRelic-logo-square-w.png
-Fri Jun 17 23:09:21 UTC 2016 >>> After 5 seconds sleep, saved 955416180.png from https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug.png
-Fri Jun 17 23:09:24 UTC 2016 >>> After 3 seconds sleep, saved 684529930.png from https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug-clr-w.png
-Fri Jun 17 23:09:25 UTC 2016 >>> Removing pngs: 568334319.png 684529930.png 955416180.png 
-Fri Jun 17 23:09:25 UTC 2016 >> Finished: Network run 252133223
