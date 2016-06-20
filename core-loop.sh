@@ -72,13 +72,12 @@ function cpuStress {
     echo -e "$(date -u) >> Finished: CPU run $cpu_run_id" | tee -a $cpu_log $master_log $verbose_log
 }
 
-
 # Randomly assign an ID for this particular run
 script_run_id=$(shuf -i 1-1000000000 -n 1)
 echo -e "$(date -u) > Started: Script run $script_run_id" | tee -a $master_log $verbose_log
 # Call both stress tests and run them at the same time
 diskStress &
-cpuStress
+/bin/bash $base_directory/cpu.sh > /dev/null
 echo -e "$(date -u) > Finished: Script run $script_run_id" | tee -a $master_log $verbose_log
 
 exit
