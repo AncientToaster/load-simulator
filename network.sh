@@ -39,9 +39,9 @@ function networkStress {
     # Call the main loop
     stressLoop
     # Log the filenames of all PNGs
-    echo -e "$(date -u) >>> Removing pngs: $(ls -1 *.png | tr '\n' ' ')" | tee -a $network_files_log $verbose_log
+    echo -e "$(date -u) >>> Removing pngs: $(ls -1 ./network-files/*.png | tr '\n' ' ')" |tee -a $network_files_log $verbose_log
     # Remove all files with a PNG extension
-    rm *.png
+    cd network-files && rm *.png
     echo "$(date -u) >> Finished: Network run $network_run_id" | tee -a $network_files_log $verbose_log $master_log $network_log
 }
 
