@@ -9,8 +9,8 @@ export verbose_log="$base_directory"/logs/verbose.log
 # If no run count supplied, run forever
 if [ -z "$1" ]
 then
-    echo "$(date -u) > No run count supplied, running indefinitely" | tee -a $master_log $verbose_log
-    echo "To supply run count, invoke as bash initializer.sh ###"
+    echo "$(date -u) > initializer.sh invoked, running indefinitely" | tee -a $master_log $verbose_log
+    echo "To run ### times instead, invoke as bash initializer.sh ###"
     # Runs forever because this always evaluates to true
     while :
         do
@@ -27,7 +27,7 @@ else
     script_iterations=$1
     # Initialize run_count_start
     run_count_start=1
-    echo "$(date -u) > Running $script_iterations times" | tee -a $master_log $verbose_log
+    echo "$(date -u) > initializer.sh invoked, running $script_iterations times" | tee -a $master_log $verbose_log
     while [[ $run_count_start -le $script_iterations ]]
     do
         echo "$(date -u) > Running $run_count_start of $script_iterations iterations" | tee -a $master_log $verbose_log
