@@ -7,13 +7,13 @@ export base_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ -z "$1" ]
 then
     echo "No run count supplied, running indefinitely"
-    echo "To supply run count, invoke as: bash initializer.sh ###"
+    echo "To supply run count, invoke as bash initializer.sh ###"
     # Runs forever because this always evaluates to true
     while :
         do
             echo "Starting a new run, press [CTRL+C] to stop..."
             echo -e "$(date -u) PID: $$ $BASHPID"
-            Invokes script and sends STDOUT from script to null
+            #Invokes script and sends STDOUT from script to null
             /bin/bash "$base_directory"/core-loop.sh > /dev/null &
             # Simultaneously starts 8 minute timer before invoking script again
             sleep 8m
