@@ -14,17 +14,17 @@ function fetchFromNetwork {
 }
  
 function stressLoop {
-    # Initialize $START
-    START=1
-    # Randomly decide how many iterations to do, and store that in $START
+    # Randomly decide how many iterations to do, and store that in $network_iterations
     network_iterations=$(shuf -i 6-24 -n 1)
-    i=$START
+    # Start the loop counter at 1
+    network_loop_start=1
     echo "$(date -u) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $master_log $network_log
-    # Main loop to download network files
-    while [[ $i -le $network_iterations ]]
+    # Main loop to download network files. 
+    # While the loop counter is less than or equal to $network_iterations, continue
+    while [[ $network_loop_start -le $network_iterations ]]
     do
         fetchFromNetwork
-        ((i = i + 1))
+        let ++network_loop_start
     done
 }
 
