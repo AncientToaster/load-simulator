@@ -1,13 +1,31 @@
 ## Installation ##
 
-The load simulator scripts have a few dependencies:
+The load simulator has a few dependencies:
 
-+ **wget**: To fetch remote network resources
-    + To install on Ubuntu, run `sudo apt-get install wget`
-    + To install on CentOS 7, run `sudo yum install wget`
-+ **stress-ng**: Generates the CPU stress
-    + To install on Ubuntu, run `sudo apt-get install stress-ng`
-    + To install on CentOS 7, run `wget ftp://ftp.icm.edu.pl/vol/rzm5/linux-opensuse/repositories/server:/monitoring/SLE_11_SP4/x86_64/stress-ng-0.06.02-1.1.x86_64.rpm && sudo rpm -Uvh stress-ng-0.06.02-1.1.x86_64.rpm`
+### wget ###
+
+Fetches remote network resources
+
+To install on Ubuntu, run
+
+    sudo apt-get install wget
+
+To install on CentOS 7, run
+
+    sudo yum install wget
+
+### stress-ng ###
+
+Generates the CPU stress
+
+To install on Ubuntu, run
+
+    sudo apt-get install stress-ng
+
+To install on CentOS 7, run
+
+    wget ftp://ftp.icm.edu.pl/vol/rzm5/linux-opensuse/repositories/server:/monitoring/SLE_11_SP4/x86_64/stress-ng-0.06.02-1.1.x86_64.rpm && sudo rpm -Uvh stress-ng-0.06.02-1.1.x86_64.rpm
+
 
 ## Invoking the Script ##
 
@@ -18,8 +36,8 @@ To run forever, start `initializer.sh` with no arguments:
 To run N times, start `initializer.sh` and specify N as the first argument:
 
     bash initializer.sh N
-    bash initializer.sh 3
-    bash initializer.sh 1000
+    bash initializer.sh 10
+    bash initializer.sh 180
 
 ## Program Structure ##
 
@@ -37,10 +55,14 @@ Load simulator consists of the following files and folders:
     + **disk.log**: Logs when **disk.sh** starts or finishes work, and also logs the size and filenames of each created file.
     + **network.log**: Logs when **network.sh** starts or finishes work.
     + **network_files.log**: Logs the storage of individual files downloaded from the web, as defined in the `fetchFromNetwork` function in **network.sh**.
++ **network-files**: Directory where **network.sh** stores its temporary files
++ **disk-files**: Directory where **disk.sh** stores its temporary files
 
 ## Cleanup and Leftover Files ##
 
-When running forever, the simulator often leaves behind extra files when terminated. To remove these extra files, use **cleanup.sh**:
+When set to run forever, the simulator often leaves behind extra files when terminated. 
+
+To remove these extra files, use **cleanup.sh**:
 
     bash cleanup.sh
 
