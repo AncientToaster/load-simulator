@@ -2,7 +2,7 @@
 
 # Get the base directory for the app
 export base_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-# Define path to master and verbose logs; other paths defined in core-loop.sh
+# Define name and path to master and verbose logs; other log paths defined in core-loop.sh
 export master_log="$base_directory"/logs/master.log
 export verbose_log="$base_directory"/logs/verbose.log
 

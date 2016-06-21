@@ -18,7 +18,7 @@ function stressLoop {
     network_iterations=$(shuf -i 6-24 -n 1)
     # Start the loop counter at 1
     network_loop_start=1
-    echo "$(date -u) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $master_log $network_log
+    echo -e "$(date -u) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $master_log $network_log
     # Main loop to download network files. 
     # While the loop counter is less than or equal to $network_iterations, continue
     while [[ $network_loop_start -le $network_iterations ]]
