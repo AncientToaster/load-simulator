@@ -16,7 +16,7 @@ function makeFile1 {
     # Sleep for timer before delting file
     sleep $file_1_delete_timer
     # Delete the file we created earlier
-    rm $base_directory/disk-files/$file_1_name.temp
+    rm "$base_directory"/disk-files/$file_1_name.temp
     echo -e "$(date -u) >>> Removing $file_1_name.temp" | tee -a $disk_log $verbose_log
 }
 
@@ -29,7 +29,7 @@ function makeFile2 {
     file_2_delete_timer=$(shuf -i 241-479 -n 1)
     echo -e "$(date -u) >>> Sleep timer for $file_2_name.temp: $file_2_delete_timer" | tee -a $disk_log $verbose_log
     sleep $file_2_delete_timer
-    rm $base_directory/disk-files/$file_2_name.temp
+    rm "$base_directory"/disk-files/$file_2_name.temp
     echo -e "$(date -u) >>> Removing $file_2_name.temp" | tee -a $disk_log $verbose_log
 }
 
