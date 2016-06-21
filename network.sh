@@ -2,7 +2,7 @@
 
 function fetchFromNetwork {
     # Randomly decide how long to sleep before fetching image
-    fetch_sleep=$(shuf -i 3-5 -n 1)
+    fetch_sleep=$(shuf -i 5-20 -n 1)
     # Assign a random filename to the image
     random_filename=$(shuf -i 1-1000000000 -n 1)
     # Select randomly from one of the possible images
@@ -17,7 +17,7 @@ function stressLoop {
     # Initialize $START
     START=1
     # Randomly decide how many iterations to do, and store that in $START
-    network_iterations=$(shuf -i 1-3 -n 1)
+    network_iterations=$(shuf -i 6-24 -n 1)
     i=$START
     echo "$(date -u) >> Started: Network run $network_run_id" | tee -a $verbose_log $master_log $network_log
     # Main loop to download images
