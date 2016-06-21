@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Creates several large temporary files to produce artificial disk load
 
 # Create the first temp file
 function makeFile1 {

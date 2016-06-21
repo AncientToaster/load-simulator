@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Get the base direcotry for the app
+# Get the base directory for the app
 export base_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # `starts a new copy of the performance script every eight minutes

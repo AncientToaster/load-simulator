@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Uses `stress-ng` to run two CPU workers, both pegged to produce 20% to 40$ load
+
 function cpuStress {
     cpu_run_id=$(shuf -i 1-1000000000 -n 1)
     echo -e "$(date -u) >> Started: CPU run $cpu_run_id" | tee -a $master_log $verbose_log
