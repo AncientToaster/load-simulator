@@ -19,7 +19,7 @@ function stressLoop {
     # Randomly decide how many iterations to do, and store that in $START
     network_iterations=$(shuf -i 6-24 -n 1)
     i=$START
-    echo "$(date -u) >> Started: Network run $network_run_id" | tee -a $verbose_log $master_log $network_log
+    echo "$(date -u) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $master_log $network_log
     # Main loop to download images
     while [[ $i -le $network_iterations ]]
     do
@@ -35,13 +35,12 @@ function networkStress {
     declare -a possible_images=("https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug.png" "https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug-w.png" "https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug-clr-w.png" "https://newrelic.com/assets/newrelic/source/NewRelic-logo-square.png" "https://newrelic.com/assets/newrelic/source/NewRelic-logo-square-w.png" "https://newrelic.com/assets/newrelic/source/NewRelic-logo-square-clr-w.png")
     # Function to randomly select from those images
     randArrayElement(){ arr=("${!1}"); echo ${arr["$[RANDOM % ${#arr[@]}]"]}; }
-    echo "$(date -u) >> Started: Network run $network_run_id" | tee -a $network_files_log $verbose_log $master_log $network_log
     # Call the main loop
     stressLoop
     # Log the filenames of all PNGs
     echo -e "$(date -u) >>> Removing pngs: $(ls -1 ./network-files/*.png | tr '\n' ' ')" |tee -a $network_files_log $verbose_log
     # Remove all files with a PNG extension
-    cd network-files && rm *.png
+    rm ./network-files/*.png
     echo "$(date -u) >> Finished: Network run $network_run_id" | tee -a $network_files_log $verbose_log $master_log $network_log
 }
 
