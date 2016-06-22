@@ -30,15 +30,6 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
 
 3. Customize the array of network resources listed in **network.sh**, under the line `declare -a possible_files=(`.
 
-## Updating ##
-
-To update, use **git**:
-
-    git remote update
-
-## Installing the Dev Branch ##
-
-
 ## Invoking the Script ##
 
 To run forever, start `initializer.sh` with no arguments:
