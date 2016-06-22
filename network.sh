@@ -50,7 +50,7 @@ function networkStress {
     # Call the main loop
     stressLoop
     # Log the filenames of all files to be removed
-    echo -e "$(date -u) >>> Removing files: $(ls -1 "$base_directory"/network-files/* | tr '\n' ' ')" | tee -a $network_files_log $verbose_log $network_log
+    echo -e "$(date -u) >>> Removing files: $(cd "$base_directory/network-files/"; ls -1 | tr '\n' ' ')" | tee -a $network_files_log $verbose_log $network_log
     # Remove all files in the network-files subdirectory
     rm "$base_directory"/network-files/*
     echo "$(date -u) >> Finished: Network run $network_run_id" | tee -a $network_files_log $verbose_log $master_log $network_log
