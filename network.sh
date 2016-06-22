@@ -24,7 +24,7 @@ function fetchFromNetwork {
     random_source=$(randArrayElement "possible_files[@]")
     # Fetch the network file and save with random file name, then log it
     wget -q "$random_source" -O $base_directory/network-files/$random_filename.png
-    echo -e "$(date -u) >>> After $fetch_sleep seconds sleep, saved $random_filename.png from $random_source" | tee -a $network_files_log
+    echo -e "$(date -u) >>> Network iteration $network_loop_start/$network_iterations: After $fetch_sleep seconds sleep, saved $random_filename.png from $random_source" | tee -a $network_files_log
 }
 
 # Runs fetchFromNetwork 6-24 times
