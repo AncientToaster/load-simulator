@@ -1,31 +1,35 @@
 ## Installation ##
 
-The load simulator has a few dependencies:
+To install, you need to clone this repo from GitHub, install a few dependencies, and provide a list of network files to download.
 
-### wget ###
+1. Clone the script from GitHub:
 
-Fetches remote network resources
+        git clone https://github.com/AncientToaster/load-simulator
 
-To install on Ubuntu, run
+1. Install **wget**, which fetches network resources:
+    + On Ubuntu, run:
 
-    sudo apt-get install wget
+            sudo apt-get install wget
 
-To install on CentOS 7, run
+    + On CentOS 7, run:
 
-    sudo yum install wget
+            sudo yum install wget
 
-### stress-ng ###
+2. Install **stress-ng**, which generates the artificial CPU load
+    + On Ubuntu, run:
 
-Generates the CPU stress
+            sudo apt-get install wget
 
-To install on Ubuntu, run
+     + On CentOS 7, run:
 
-    sudo apt-get install stress-ng
+            wget ftp://ftp.icm.edu.pl/vol/rzm5/linux-opensuse/repositories/server:/monitoring/SLE_11_SP4/x86_64/stress-ng-0.06.02-1.1.x86_64.rpm && sudo rpm -Uvh stress-ng-0.06.02-1.1.x86_64.rpm
+3. Customize the array of network resources listed in **network.sh**, under the `declare -a possible_files=(` line.
 
-To install on CentOS 7, run
+## Updating ##
 
-    wget ftp://ftp.icm.edu.pl/vol/rzm5/linux-opensuse/repositories/server:/monitoring/SLE_11_SP4/x86_64/stress-ng-0.06.02-1.1.x86_64.rpm && sudo rpm -Uvh stress-ng-0.06.02-1.1.x86_64.rpm
+To update, use **git**:
 
+    git remote update
 
 ## Invoking the Script ##
 
