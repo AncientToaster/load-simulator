@@ -36,5 +36,4 @@ else
         sleep 8m
         let ++run_count_start
     done
-    echo -e "$(date -u) > Completed all $script_iterations iterations" | tee -a $master_log $verbose_log
 fi
