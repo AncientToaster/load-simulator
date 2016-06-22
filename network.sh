@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define an array of network files to fetch from
-# Please customize with your own set of files
+# Please customize with your own set of files, one file per line enclosed in double quotes
 declare -a possible_files=(
     "https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug.png"
     "https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug-w.png"

@@ -10,12 +10,12 @@ export verbose_log="$base_directory"/logs/verbose.log
 if [ -z "$1" ]
 then
     echo "$(date -u) > initializer.sh invoked, running indefinitely" | tee -a $master_log $verbose_log
-    echo "To run ### times instead, invoke as bash initializer.sh ###"
+    echo "To run N times instead, invoke as `bash initializer.sh N`"
+    echo -e "$(date -u) PID: $$ $BASHPID"
     # Runs forever because this always evaluates to true
     while :
         do
             echo "$(date -u) > Starting another run, press [CTRL+C] to stop..." | tee -a $master_log $verbose_log
-            echo -e "$(date -u) PID: $$ $BASHPID"
             #Invokes script and sends STDOUT from script to null
             /bin/bash "$base_directory"/core-loop.sh > /dev/null &
             # Simultaneously starts 8 minute timer before invoking script again
@@ -28,10 +28,10 @@ else
     # Initialize run_count_start
     run_count_start=1
     echo "$(date -u) > initializer.sh invoked, running $script_iterations times" | tee -a $master_log $verbose_log
+    echo -e "$(date -u) PID: $$ $BASHPID"
     while [[ $run_count_start -le $script_iterations ]]
     do
         echo "$(date -u) > Running $run_count_start of $script_iterations iterations" | tee -a $master_log $verbose_log
-        echo -e "$(date -u) PID: $$ $BASHPID"
         /bin/bash "$base_directory"/core-loop.sh > /dev/null &
         sleep 8m
         let ++run_count_start
