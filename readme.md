@@ -6,6 +6,10 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
 
         git clone https://github.com/AncientToaster/load-simulator
 
+    To install the dev branch instead, clone the main repo and then check out the dev branch:
+
+        git clone https://github.com/AncientToaster/load-simulator && cd load-simulator && git checkout dev
+
 1. Install **wget**, which fetches network resources:
     + On Ubuntu, run:
 
@@ -30,6 +34,9 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
 To update, use **git**:
 
     git remote update
+
+## Installing the Dev Branch ##
+
 
 ## Invoking the Script ##
 
