@@ -10,7 +10,7 @@ export verbose_log="$base_directory"/logs/verbose.log
 if [ -z "$1" ]
 then
     echo "$(date -u) > initializer.sh invoked, running indefinitely" | tee -a $master_log $verbose_log
-    echo "To run N times instead, invoke as `bash initializer.sh N`"
+    echo "$(date -u) > To run N times instead, invoke as 'bash initializer.sh N'"
     echo -e "$(date -u) PID: $$ $BASHPID"
     # Runs forever because this always evaluates to true
     while :
@@ -21,6 +21,7 @@ then
             # Simultaneously starts 8 minute timer before invoking script again
             sleep 8m
         done
+    echo "$(date -u) > Run stopped, but you might need to cleanup stray files or processes" | tee -a $master_log $verbose_log
 # If run count supplied, run that many times
 else
     # Store the maximum number of runs
