@@ -27,7 +27,8 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
      + On CentOS 7, run:
 
             wget ftp://ftp.icm.edu.pl/vol/rzm5/linux-opensuse/repositories/server:/monitoring/SLE_11_SP4/x86_64/stress-ng-0.06.02-1.1.x86_64.rpm && sudo rpm -Uvh stress-ng-0.06.02-1.1.x86_64.rpm
-3. Customize the array of network resources listed in **network.sh**, under the `declare -a possible_files=(` line.
+
+3. Customize the array of network resources listed in **network.sh**, under the line `declare -a possible_files=(`.
 
 ## Updating ##
 
