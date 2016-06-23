@@ -29,10 +29,11 @@ function diskStress {
     # Call all three disk runs and run them at the same time
     # Make a file of 100 to 2000 MB and delete after 100 to 240 seconds
     makeFile 1 $(shuf -i 100-2000 -n 1) $(shuf -i 100-240 -n 1) &
-    # Make a file of 100 to 400 MB and delete after 180 to 400 seconds
-    makeFile 2 $(shuf -i 100-400 -n 1) $(shuf -i 180-400 -n 1) &
-    # Make a file of 50 to 250 MB and delete after 241 to 479 seconds
-    makeFile 3 $(shuf -i 50-250 -n 1) $(shuf -i 241-479 -n 1)
+    # Make a file of 100 to 400 MB and delete after 180 to 355 seconds
+    makeFile 2 $(shuf -i 100-400 -n 1) $(shuf -i 180-355 -n 1) &
+    # Make a file of 50 to 250 MB and delete after 361 to 470 seconds
+    # The third job MUST run longer than others to prevent concurrency issues
+    makeFile 3 $(shuf -i 50-250 -n 1) $(shuf -i 361-470 -n 1)
     echo -e "$(date -u) >> Finished: Disk run $disk_run_id" | tee -a $disk_log $master_log $verbose_log
 }
 
