@@ -48,14 +48,16 @@ Load simulator consists of the following files and folders:
 
 + **initializer.sh**: A simple shell script that starts the main program loop.
 + **core-loop.sh**: The main program loop, which assigns an ID to the script run and invokes the individual simulation components
-    + **cpu.sh**: Starts a few CPU workers.
+    + **cpu.sh**: Starts two CPU workers, each of which generates variable amounts of load. The run time for CPUJ1 (480 to 720 seconds) determines the overall run time for the iteration
     + **disk.sh**: Writes a few large files to disk, sleeps, then removes them.
     + **network.sh**: Downloads various web assets, sleeps between each download, then removes all assets.
+    + **ram.sh**: Occupies 75 to 275 MB of RAM for a variable amount of time, in two stages.
 + **logs**: Directory to store the log files:
     + **master.log**: Logs when **core-loop.sh**, **cpu.sh**, **disk.sh**, and **network.sh** start or finish their work.
     + **verbose.log**: Logs all activity except storage of individual files from **network.sh**.
     + **cpu.log**: Logs when **cpu.sh** starts or finishes work, and also logs the load percentage and run times.
     + **disk.log**: Logs when **disk.sh** starts or finishes work, and also logs the size and filenames of each created file.
+    + **ram.log**: Logs when **ram.sh** starts or finishes work, and also logs the amount of RAM loaded and run times.
     + **network.log**: Logs when **network.sh** starts or finishes work.
     + **network_files.log**: Logs the storage of individual files downloaded from the web, as defined in the `fetchFromNetwork` function in **network.sh**.
 + **network-files**: Directory where **network.sh** stores its temporary files

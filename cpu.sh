@@ -5,7 +5,7 @@ function cpuStress {
     # Log the beginning of the run
     cpu_run_id=$(shuf -i 1-1000000000 -n 1)
     echo -e "$(date -u) >> Started: CPU run $cpu_run_id" | tee -a $master_log $verbose_log
-    # Log time and load for CPUJ1
+    # Log time and load for CPUJ1. This time is also the maximum run time for the script.
     stress_time=$(shuf -i 480-720 -n 1)
     stress_cpu_load=$(shuf -i 10-30 -n 1)
     cpuj1_sub_id=$(shuf -i 1-1000000000 -n 1)
