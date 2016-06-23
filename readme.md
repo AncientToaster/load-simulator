@@ -63,6 +63,12 @@ Load simulator consists of the following files and folders:
 + **network-files**: Directory where **network.sh** stores its temporary files
 + **disk-files**: Directory where **disk.sh** stores its temporary files
 
+## Watching the Logs ##
+
+There are a number of logs, but the best one to watch to get everything is verbose.log:
+
+    cd load-simulator/logs/ && watch tail -25 verbose.log 
+
 ## Cleanup and Leftover Files ##
 
 When set to run forever, the simulator often leaves behind extra files when terminated. 
