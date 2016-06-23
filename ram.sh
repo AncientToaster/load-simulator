@@ -8,7 +8,7 @@ function ramJob {
     ram_base_id=$1
     ram_load_amount=$2
     ram_run_time=$3
-    # Generate a random sub-ID for the RAM job
+    # Generate a random sub-ID for this RAM job
     ram_sub_id=$(shuf -i 1-1000000000 -n 1)
     # Log the ramjob run time and load amount
     echo -e "$(date -u) >>> RJ$ram_base_id/$ram_sub_id occupying $ram_load_amount MB for $ram_run_time seconds" | tee -a $ram_log $verbose_log
