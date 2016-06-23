@@ -24,7 +24,7 @@ function diskStress {
     # Randomly assign an ID for this particular run
     disk_run_id=$(shuf -i 1-1000000000 -n 1)
     echo -e "$(date -u) >> Started: Disk run $disk_run_id" | tee -a $disk_log $master_log $verbose_log
-    # Call both disk runs and run them at the same time
+    # Call all three disk runs and run them at the same time
     # Make a file of 100 to 2000 MB and delete after 100 to 240 seconds
     makeFile 1 $(shuf -i 100-2000 -n 1) $(shuf -i 100-240 -n 1) &
     # Make a file of 100 to 400 MB and delete after 180 to 400 seconds
