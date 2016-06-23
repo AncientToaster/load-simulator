@@ -24,7 +24,7 @@ function ramStress {
     echo -e "$(date -u) >> Started: RAM run $ram_run_id" | tee -a $ram_log $master_log $verbose_log
     # Call both RAM jobs and run at the same time
     # Occupy 100 to 200 MB of ram for 360 to 480 seconds
-    ramJob 1 $(shuf -i 50-200 -n 1) $(shuf -i 360-480 -n 1) &
+    ramJob 1 $(shuf -i 50-200 -n 1) $(shuf -i 90-480 -n 1) &
     # Occupy 25 to 75 MB of ram for 60 to 480 seconds
     ramJob 2 $(shuf -i 25-75 -n 1) $(shuf -i 360-480 -n 1)
     echo -e "$(date -u) >> Finished: RAM run $ram_run_id" | tee -a $ram_log $master_log $verbose_log
