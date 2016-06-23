@@ -16,8 +16,8 @@ echo -e "$(date -u) > Started: Script run $script_run_id" | tee -a $master_log $
 # Call both stress tests and run them at the same time
 /bin/bash "$base_directory"/disk.sh > /dev/null &
 /bin/bash "$base_directory"/network.sh > /dev/null &
-/bin/bash "$base_directory"/cpu.sh > /dev/null &
-/bin/bash "$base_directory"/ram.sh > /dev/null
+/bin/bash "$base_directory"/ram.sh > /dev/null &
+/bin/bash "$base_directory"/cpu.sh > /dev/null
 echo -e "$(date -u) > Finished: Script run $script_run_id" | tee -a $master_log $verbose_log
 
 exit
