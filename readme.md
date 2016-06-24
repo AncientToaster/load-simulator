@@ -22,7 +22,7 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
 2. Install **stress-ng**, which generates the artificial CPU load
     + On Ubuntu, run:
 
-            sudo apt-get install wget -y
+            sudo apt-get install stress-ng -y
 
     + On CentOS 7, run:
 
