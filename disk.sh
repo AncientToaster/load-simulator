@@ -18,7 +18,7 @@ function makeFile {
     sleep $sleep_timer
     # Delete the file we created earlier
     rm "$base_directory"/disk-files/$make_file_name.temp
-    echo -e "$(date -u) >>> DJ$disk_base_id/$disk_sub_id removed $make_file_name.temp" | tee -a $disk_log $verbose_log
+    echo -e "$(date -u) >>> DJ$disk_base_id/$disk_sub_id removed $make_file_name.temp, freeing $make_file_size MB" | tee -a $disk_log $verbose_log
 }
 
 # Main loop
