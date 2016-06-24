@@ -13,16 +13,16 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
 1. Install **wget**, which fetches network resources:
     + On Ubuntu, run:
 
-            sudo apt-get install wget
+            sudo apt-get install wget -y
 
     + On CentOS 7, run:
 
-            sudo yum install wget
+            sudo yum install wget -y
 
 2. Install **stress-ng**, which generates the artificial CPU load
     + On Ubuntu, run:
 
-            sudo apt-get install wget
+            sudo apt-get install wget -y
 
     + On CentOS 7, run:
 
