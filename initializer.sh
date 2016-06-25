@@ -2,7 +2,7 @@
 
 #Function used across all scripts to log dates
 function logDate {
-   date -u +%Y-%m-%d" "%H:%M:%S" UTC"
+   date -u +%Y-%m-%d" @ "%H:%M:%S" UTC"
 }
 export -f logDate
 
