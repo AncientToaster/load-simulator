@@ -33,7 +33,7 @@ function stressLoop {
     network_iterations=$(shuf -i 6-24 -n 1)
     # Start the loop counter at 1
     network_loop_start=1
-    echo -e "$(logDate) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $master_log $network_log
+    echo -e "$(logDate) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $network_log
     # Main loop to download network files. 
     # While the loop counter is less than or equal to $network_iterations, continue
     while [[ $network_loop_start -le $network_iterations ]]
@@ -53,7 +53,7 @@ function networkStress {
     echo -e "$(logDate) >>> Removing files: $(cd "$base_directory/network-files/"; ls -1 | tr '\n' ' ')" | tee -a $network_files_log $verbose_log $network_log
     # Remove all files in the network-files subdirectory
     rm "$base_directory"/network-files/*
-    echo "$(logDate) >> Finished: Network run $network_run_id" | tee -a $network_files_log $verbose_log $master_log $network_log
+    echo "$(logDate) >> Finished: Network run $network_run_id" | tee -a $network_files_log $verbose_log $network_log
 }
 
 networkStress

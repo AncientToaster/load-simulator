@@ -21,7 +21,7 @@ function ramJob {
 function ramStress {
     # Randomly assign an ID for this particular run
     ram_run_id=$(shuf -i 1-1000000000 -n 1)
-    echo -e "$(logDate) >> Started: RAM run $ram_run_id" | tee -a $ram_log $master_log $verbose_log
+    echo -e "$(logDate) >> Started: RAM run $ram_run_id" | tee -a $ram_log $verbose_log
     # Call three RAM jobs and run at the same time
     # Occupy 35 to 100 MB of ram for 100 to 240 seconds
     ramJob 1 $(shuf -i 35-100 -n 1) $(shuf -i 100-240 -n 1) &
@@ -30,7 +30,7 @@ function ramStress {
     # Occupy 10 to 20 MB of ram after 361 to 470 seconds
     # The third job MUST run longer than others to prevent concurrency issues
     ramJob 3 $(shuf -i 10-20 -n 1) $(shuf -i 361-470 -n 1)
-    echo -e "$(logDate) >> Finished: RAM run $ram_run_id" | tee -a $ram_log $master_log $verbose_log
+    echo -e "$(logDate) >> Finished: RAM run $ram_run_id" | tee -a $ram_log $verbose_log
 }
 
 ramStress
