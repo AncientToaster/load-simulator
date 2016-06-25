@@ -24,7 +24,7 @@ function fetchFromNetwork {
     random_source=$(randArrayElement "possible_files[@]")
     # Fetch the network file and save with random file name, then log it
     wget -q "$random_source" -O $base_directory/network-files/$random_filename.png
-    echo -e "$(date -u) >>> Network iteration $network_loop_start/$network_iterations: After $fetch_sleep seconds sleep, saved $random_filename.png from $random_source" | tee -a $network_files_log
+    echo -e "$(logDate) >>> Network iteration $network_loop_start/$network_iterations: After $fetch_sleep seconds sleep, saved $random_filename.png from $random_source" | tee -a $network_files_log
 }
 
 # Runs fetchFromNetwork 6-24 times
@@ -33,7 +33,7 @@ function stressLoop {
     network_iterations=$(shuf -i 6-24 -n 1)
     # Start the loop counter at 1
     network_loop_start=1
-    echo -e "$(date -u) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $master_log $network_log
+    echo -e "$(logDate) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $master_log $network_log
     # Main loop to download network files. 
     # While the loop counter is less than or equal to $network_iterations, continue
     while [[ $network_loop_start -le $network_iterations ]]
@@ -50,10 +50,10 @@ function networkStress {
     # Call the main loop
     stressLoop
     # Log the filenames of all files to be removed
-    echo -e "$(date -u) >>> Removing files: $(cd "$base_directory/network-files/"; ls -1 | tr '\n' ' ')" | tee -a $network_files_log $verbose_log $network_log
+    echo -e "$(logDate) >>> Removing files: $(cd "$base_directory/network-files/"; ls -1 | tr '\n' ' ')" | tee -a $network_files_log $verbose_log $network_log
     # Remove all files in the network-files subdirectory
     rm "$base_directory"/network-files/*
-    echo "$(date -u) >> Finished: Network run $network_run_id" | tee -a $network_files_log $verbose_log $master_log $network_log
+    echo "$(logDate) >> Finished: Network run $network_run_id" | tee -a $network_files_log $verbose_log $master_log $network_log
 }
 
 networkStress
