@@ -19,7 +19,7 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
 
             sudo yum install wget -y
 
-2. Install **stress-ng**, which generates the artificial CPU load
+2. Install **stress-ng**, which generates the artificial CPU load:
     + On Ubuntu 14+, run:
 
             sudo apt-get install stress-ng -y
@@ -45,6 +45,10 @@ To run N times, start `initializer.sh` and specify N as the first argument:
     bash initializer.sh N
     bash initializer.sh 10
     bash initializer.sh 180
+
+If you're connected to your host over SSH, you may need to do something more elaborate to keep the script running even if your SSH session terminates:
+
+    nohup bash initializer.sh </dev/null >/dev/null 2>&1 &
 
 ## Program Structure ##
 
