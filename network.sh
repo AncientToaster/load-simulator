@@ -1,15 +1,7 @@
 #!/bin/bash
 
-# Define an array of network files to fetch from
-# Please customize with your own set of files, one file per line enclosed in double quotes
-declare -a possible_files=(
-    "https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug.png"
-    "https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug-w.png"
-    "https://newrelic.com/assets/newrelic/source/NewRelic-logo-bug-clr-w.png"
-    "https://newrelic.com/assets/newrelic/source/NewRelic-logo-square.png"
-    "https://newrelic.com/assets/newrelic/source/NewRelic-logo-square-w.png"
-    "https://newrelic.com/assets/newrelic/source/NewRelic-logo-square-clr-w.png"
-)
+# Read a list of possible network resources from network.config
+readarray possible_files < $base_directory/network.config
 
 # Does fetches of individual network files
 function fetchFromNetwork {
@@ -18,10 +10,8 @@ function fetchFromNetwork {
     sleep $fetch_sleep
     # Assign a random filename to the file
     random_filename=$(shuf -i 1-1000000000 -n 1)
-    # Function to randomly select from the network files above
-    randArrayElement(){ arr=("${!1}"); echo ${arr["$[RANDOM % ${#arr[@]}]"]}; }
-    # Assign one of those network files to the random_source variable
-    random_source=$(randArrayElement "possible_files[@]")
+    # Randomly select one of the files in network.config. Only works up to 32768 items.
+    random_source=${possible_files[$RANDOM % ${#possible_files[@]} ]}
     # Fetch the network file and save with random file name, then log it
     wget -q "$random_source" -O $base_directory/network-files/$random_filename.png
     echo -e "$(logDate) >>> Network iteration $network_loop_start/$network_iterations: After $fetch_sleep seconds sleep, saved $random_filename.png from $random_source" | tee -a $network_files_log

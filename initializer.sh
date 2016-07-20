@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Function used across all scripts to log dates
+# Function used across all scripts to log dates
 function logDate {
    date -u +%Y-%m-%d" @ "%H:%M:%S" UTC"
 }
