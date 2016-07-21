@@ -28,7 +28,7 @@ then
         do
             echo -e "$(logDate) > Starting another run, press [CTRL+C] to stop..." | tee -a $master_log $verbose_log
             #Invokes script and sends STDOUT from script to null
-            /bin/bash "$base_directory"/core-loop.sh > /dev/null &
+            /bin/bash "$base_directory"/scripts/core-loop.sh > /dev/null &
             # Simultaneously starts 8 minute timer before invoking script again
             sleep 8m
         done
@@ -43,7 +43,7 @@ else
     while [[ $run_count_start -le $script_iterations ]]
     do
         echo -e "$(logDate) > Running $run_count_start of $script_iterations iterations" | tee -a $master_log $verbose_log
-        /bin/bash "$base_directory"/core-loop.sh > /dev/null &
+        /bin/bash "$base_directory"/scripts/core-loop.sh > /dev/null &
         sleep 8m
         let ++run_count_start
     done

@@ -15,22 +15,22 @@ echo -e "$(logDate) > Started: Script run $script_run_id" | tee -a $master_log $
 
 # Call all stress tests and run them at the same time
 if [ "$disk_enabled" = true ] ; then
-    /bin/bash "$base_directory"/disk.sh > /dev/null &
+    /bin/bash "$base_directory"/scripts/disk.sh > /dev/null &
 elif [ "$disk_enabled" = false ] ; then
     echo -e "$(logDate) >> Disabled: Disk for $script_run_id" | tee -a $master_log $verbose_log
 fi
 if [ "$network_enabled" = true ] ; then
-    /bin/bash "$base_directory"/network.sh > /dev/null &
+    /bin/bash "$base_directory"/scripts/network.sh > /dev/null &
 elif [ "$network_enabled" = false ] ; then
     echo -e "$(logDate) >> Disabled: Network for $script_run_id" | tee -a $master_log $verbose_log
 fi
 if [ "$ram_enabled" = true ] ; then
-    /bin/bash "$base_directory"/ram.sh > /dev/null &
+    /bin/bash "$base_directory"/scripts/ram.sh > /dev/null &
 elif [ "$ram_enabled" = false ] ; then
     echo -e "$(logDate) >> Disabled: RAM for $script_run_id" | tee -a $master_log $verbose_log
 fi
 if [ "$cpu_enabled" = true ] ; then
-    /bin/bash "$base_directory"/cpu.sh > /dev/null
+    /bin/bash "$base_directory"/scripts/cpu.sh > /dev/null
 elif [ "$cpu_enabled" = false ] ; then
     echo -e "$(logDate) >> Disabled: CPU for $script_run_id" | tee -a $master_log $verbose_log
 fi
