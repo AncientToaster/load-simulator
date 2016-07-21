@@ -12,11 +12,13 @@ export base_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Define name and path to master and verbose logs; other log paths defined in core-loop.sh
 export master_log="$base_directory"/logs/master.log
 export verbose_log="$base_directory"/logs/verbose.log
+
 # Import the main config file
 set -a
 source $base_directory/primary.config
 set +a
 
+# Decide whether to run forever, or run N times
 # If no run count supplied, run forever
 if [ -z "$1" ]
 then
