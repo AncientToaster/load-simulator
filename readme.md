@@ -1,4 +1,4 @@
-## Installation ##
+## Install the Script ##
 
 To install, you need to clone this repo from GitHub, install a few dependencies, and provide a list of network files to download. This script requires Bash 4 or higher.
 
@@ -34,7 +34,7 @@ To install, you need to clone this repo from GitHub, install a few dependencies,
 
 3. Customize the array of network resources listed in **network.config**.
 
-## Invoking the Script ##
+## Invoke the Script ##
 
 To run forever, start `initializer.sh` with no arguments:
 
@@ -49,6 +49,8 @@ To run N times, start `initializer.sh` and specify N as the first argument:
 If you're connected to your host over SSH, you may need to do something more elaborate to keep the script running even if your SSH session terminates:
 
     nohup bash initializer.sh </dev/null >/dev/null 2>&1 &
+
+## Configure the Simulator ##
 
 ## Program Structure ##
 
@@ -68,6 +70,8 @@ Load simulator consists of the following files and folders:
     + **ram.log**: Logs when **ram.sh** starts or finishes work, and also logs the amount of RAM loaded and run times.
     + **network.log**: Logs when **network.sh** starts or finishes work.
     + **network_files.log**: Logs the storage of individual files downloaded from the web, as defined in the `fetchFromNetwork` function in **network.sh**.
++ **primary.config**: Control the behavior of the load simulator script.
++ **network.config**: Define a list of web resources for the network simulator script to download.
 + **network-files**: Directory where **network.sh** stores its temporary files
 + **disk-files**: Directory where **disk.sh** stores its temporary files
 
