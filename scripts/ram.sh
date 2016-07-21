@@ -28,8 +28,8 @@ function ramStress {
     # Occupy 20 to 40 MB of ram for 180 to 355 seconds
     ramJob 2 $(shuf -i 20-40 -n 1) $(shuf -i 180-355 -n 1) &
     # Occupy 10 to 20 MB of ram after 361 to 470 seconds
-    # The third job MUST run longer than others to prevent concurrency issues
     ramJob 3 $(shuf -i 10-20 -n 1) $(shuf -i 361-470 -n 1)
+    wait
     echo -e "$(logDate) >> Finished: RAM run $ram_run_id" | tee -a $ram_log $verbose_log
 }
 

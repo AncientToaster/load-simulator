@@ -57,7 +57,7 @@ If you're connected to your host over SSH, you may need to do something more ela
 Load simulator consists of the following files and folders:
 
 + **initializer.sh**: A simple shell script that starts the main program loop.
-+ **core-loop.sh**: The main program loop, which assigns an ID to the script run and invokes the individual simulation components
++ **core-loop.sh**: The main program loop, which assigns an ID to the script run and invokes the individual simulation components (located in `/scripts`):
     + **cpu.sh**: Starts two CPU workers, each of which generates variable amounts of load. The run time for CPUJ1 (480 to 720 seconds) determines the overall run time for the iteration
     + **disk.sh**: Writes a few large files to disk, sleeps, then removes them.
     + **network.sh**: Downloads various web assets, sleeps between each download, then removes all assets.
