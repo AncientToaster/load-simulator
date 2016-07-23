@@ -28,7 +28,7 @@ function ramStress {
     ramJob 1 $(shuf -i 35-100 -n 1) $ram_1_timer &
     # Occupy a medium amount of RAM for a medium time
     ram_2_timer=$(shuf -i $(echo "$maximum_run_time * .25" | bc)-$(echo "$maximum_run_time * .5" | bc) -n 1)
-    ramJob 2 $(shuf -i 20-40 -n 1) $ram_2_timer
+    ramJob 2 $(shuf -i 20-40 -n 1) $ram_2_timer &
     # Occupy a small amount of RAM for a long time
     ram_3_timer=$(shuf -i $minimum_run_time-$maximum_run_time -n 1)
     ramJob 3 $(shuf -i 10-20 -n 1) $ram_3_timer
