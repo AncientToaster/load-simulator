@@ -23,12 +23,15 @@ function ramStress {
     ram_run_id=$(shuf -i 1-1000000000 -n 1)
     echo -e "$(logDate) >> Started: RAM run $ram_run_id" | tee -a $ram_log $verbose_log
     # Call three RAM jobs and run at the same time
-    # Occupy 35 to 100 MB of ram for 100 to 240 seconds
-    ramJob 1 $(shuf -i 35-100 -n 1) $(shuf -i 100-240 -n 1) &
-    # Occupy 20 to 40 MB of ram for 180 to 355 seconds
-    ramJob 2 $(shuf -i 20-40 -n 1) $(shuf -i 180-355 -n 1) &
-    # Occupy 10 to 20 MB of ram after 361 to 470 seconds
-    ramJob 3 $(shuf -i 10-20 -n 1) $(shuf -i 361-470 -n 1)
+    # Occupy a large amount of RAM for a short time
+    ram_1_timer=$(shuf -i $(echo "$maximum_run_time * .14285" | bc)-$(echo "$maximum_run_time * .33334" | bc) -n 1)
+    ramJob 1 $(shuf -i 35-100 -n 1) $ram_1_timer &
+    # Occupy a medium amount of RAM for a medium time
+    ram_2_timer=$(shuf -i $(echo "$maximum_run_time * .25" | bc)-$(echo "$maximum_run_time * .5" | bc) -n 1)
+    ramJob 2 $(shuf -i 20-40 -n 1) $ram_2_timer
+    # Occupy a small amount of RAM for a long time
+    ram_3_timer=$(shuf -i $minimum_run_time-$maximum_run_time -n 1)
+    ramJob 3 $(shuf -i 10-20 -n 1) $ram_3_timer
     wait
     echo -e "$(logDate) >> Finished: RAM run $ram_run_id" | tee -a $ram_log $verbose_log
 }
