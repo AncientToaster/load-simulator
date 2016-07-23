@@ -6,7 +6,7 @@ readarray possible_files < $base_directory/network.config
 # Does fetches of individual network files
 function fetchFromNetwork {
     # Randomly decide how long to sleep before fetching network file
-    fetch_sleep=$(shuf -i 5-20 -n 1)
+    fetch_sleep=$(shuf -i 5-15 -n 1)
     sleep $fetch_sleep
     # Assign a random filename to the file
     random_filename=$(shuf -i 1-1000000000 -n 1)
@@ -20,7 +20,7 @@ function fetchFromNetwork {
 # Runs fetchFromNetwork 6-24 times
 function stressLoop {
     # Randomly decide how many iterations to do, and store that in $network_iterations
-    network_iterations=$(shuf -i 6-24 -n 1)
+    network_iterations=$(shuf -i $(echo "$minimum_run_time / 15" | bc)-$(echo "$maximum_run_time / 15" | bc) -n 1)
     # Start the loop counter at 1
     network_loop_start=1
     echo -e "$(logDate) >> Started: Network run $network_run_id with $network_iterations iterations" | tee -a $verbose_log $network_log
