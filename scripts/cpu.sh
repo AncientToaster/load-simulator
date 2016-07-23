@@ -25,7 +25,7 @@ function cpuStress {
     long_job_time=$(shuf -i $minimum_run_time-$maximum_run_time -n 1)
     cpuJob 1 $(shuf -i 20-30 -n 1) $long_job_time &
     # Run the shorter CPU job
-    short_job_time=$(shuf -i $(echo "$maximum_run_time * .0625" | bc)-$(echo "$maximum_run_time * .6667" | bc) -n 1)
+    short_job_time=$(shuf -i $(echo "$maximum_run_time * .0625" | bc)-$(echo "$maximum_run_time * .66667" | bc) -n 1)
     cpuJob 2 $(shuf -i 5-20 -n 1) $short_job_time
     wait
     echo -e "$(logDate) >> Finished: CPU run $cpu_run_id" | tee -a $verbose_log $cpu_log
