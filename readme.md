@@ -57,11 +57,14 @@ If you're connected to your host over SSH, you may need to do something more ela
 Load simulator consists of the following files and folders:
 
 + **initializer.sh**: A simple shell script that starts the main program loop.
-+ **core-loop.sh**: The main program loop, which assigns an ID to the script run and invokes the individual simulation components (located in `/scripts`):
-    + **cpu.sh**: Starts two CPU workers, each of which generates variable amounts of load. The run time for CPUJ1 (480 to 720 seconds) determines the overall run time for the iteration
++ **primary.config**: Control the behavior of the load simulator script.
++ **network.config**: Define a list of web resources for the network simulator script to download.
++ **scripts**: Contains the scripts for the individual components.
+    + **core-loop.sh**: The main program loop, which assigns an ID to the script run and invokes the individual simulation components (located in `/scripts`):
+    + **cpu.sh**: Starts two CPU workers, each of which generates variable amounts of load.
     + **disk.sh**: Writes a few large files to disk, sleeps, then removes them.
     + **network.sh**: Downloads various web assets, sleeps between each download, then removes all assets.
-    + **ram.sh**: Occupies 75 to 275 MB of RAM for a variable amount of time, in two stages.
+    + **ram.sh**: Occupies RAM in three separate jobs.
 + **logs**: Directory to store the log files:
     + **master.log**: Logs when **core-loop.sh**, **cpu.sh**, **disk.sh**, and **network.sh** start or finish their work.
     + **verbose.log**: Logs all activity except storage of individual files from **network.sh**.
@@ -70,14 +73,12 @@ Load simulator consists of the following files and folders:
     + **ram.log**: Logs when **ram.sh** starts or finishes work, and also logs the amount of RAM loaded and run times.
     + **network.log**: Logs when **network.sh** starts or finishes work.
     + **network_files.log**: Logs the storage of individual files downloaded from the web, as defined in the `fetchFromNetwork` function in **network.sh**.
-+ **primary.config**: Control the behavior of the load simulator script.
-+ **network.config**: Define a list of web resources for the network simulator script to download.
 + **network-files**: Directory where **network.sh** stores its temporary files
 + **disk-files**: Directory where **disk.sh** stores its temporary files
 
 ## Watching the Logs ##
 
-There are a number of logs, but the best one to watch to get everything is verbose.log:
+There are a number of logs, but the best one to watch to get everything is **verbose.log**:
 
     cd load-simulator/logs/ && watch tail -25 verbose.log 
 
