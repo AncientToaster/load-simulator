@@ -21,10 +21,12 @@ function cpuStress {
     cpu_run_id=$(shuf -i 1-1000000000 -n 1)
     echo -e "$(logDate) >> Started: CPU run $cpu_run_id" | tee -a $verbose_log $cpu_log
     # Call both CPU jobs and run them at the same time
-    # Run the higher-load CPU job
-    cpuJob 1 $(shuf -i 20-30 -n 1) $(shuf -i 480-720 -n 1) &
-    # Run the lower-load CPU job
-    cpuJob 2 $(shuf -i 5-20 -n 1) $(shuf -i 45-480 -n 1)
+    # Run the higher CPU job
+    long_job_time=$(shuf -i $minimum_run_time-$maximum_run_time -n 1)
+    cpuJob 1 $(shuf -i 20-30 -n 1) $long_job_time &
+    # Run the shorter CPU job
+    short_job_time=$(shuf -i $(echo "$maximum_run_time * .0625" | bc)-$(echo "$maximum_run_time * .66667" | bc) -n 1)
+    cpuJob 2 $(shuf -i 5-20 -n 1) $short_job_time
     wait
     echo -e "$(logDate) >> Finished: CPU run $cpu_run_id" | tee -a $verbose_log $cpu_log
 }

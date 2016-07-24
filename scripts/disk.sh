@@ -27,12 +27,15 @@ function diskStress {
     disk_run_id=$(shuf -i 1-1000000000 -n 1)
     echo -e "$(logDate) >> Started: Disk run $disk_run_id" | tee -a $disk_log $verbose_log
     # Call all three disk runs and run them at the same time
-    # Make a file of 100 to 2000 MB and delete after 100 to 240 seconds
-    makeFile 1 $(shuf -i 100-2000 -n 1) $(shuf -i 100-240 -n 1) &
-    # Make a file of 100 to 400 MB and delete after 180 to 355 seconds
-    makeFile 2 $(shuf -i 100-400 -n 1) $(shuf -i 180-355 -n 1) &
-    # Make a file of 50 to 250 MB and delete after 361 to 470 seconds
-    makeFile 3 $(shuf -i 50-250 -n 1) $(shuf -i 361-470 -n 1)
+    # Make a large file and keep it for a short time
+    file_1_timer=$(shuf -i $(echo "$maximum_run_time * .14285" | bc)-$(echo "$maximum_run_time * .33334" | bc) -n 1)
+    makeFile 1 $(shuf -i 100-2000 -n 1) $file_1_timer &
+    # Make a medium file and keep it for a medium amount of time
+    file_2_timer=$(shuf -i $(echo "$maximum_run_time * .25" | bc)-$(echo "$maximum_run_time * .5" | bc) -n 1)
+    makeFile 2 $(shuf -i 100-400 -n 1) $file_2_timer &
+    # Make a small file and keep it for a long time
+    file_3_timer=$(shuf -i $minimum_run_time-$maximum_run_time -n 1)
+    makeFile 3 $(shuf -i 50-250 -n 1) $file_3_timer
     wait
     echo -e "$(logDate) >> Finished: Disk run $disk_run_id" | tee -a $disk_log $verbose_log
 }
