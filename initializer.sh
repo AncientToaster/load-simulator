@@ -25,11 +25,11 @@ then
     echo -e "$(logDate) > To run N times instead, invoke as 'bash initializer.sh N'"
     echo -e "$(logDate) > Components: CPU $cpu_enabled, RAM $ram_enabled, Network $network_enabled, Disk $disk_enabled" | tee -a $master_log $verbose_log
     echo -e "$(logDate) > Run times: $time_between_runs seconds between runs, min run time $minimum_run_time seconds and max run time $maximum_run_time seconds" | tee -a $master_log $verbose_log
-    echo -e "$(logDate) > PID: $$ $BASHPID"
+    echo -e "$(logDate) > PID: $$ $BASHPID" | tee -a $master_log $verbose_log
     # Runs forever because this always evaluates to true
     while :
         do
-            echo -e "$(logDate) > Starting another run, press [CTRL+C] to stop..." | tee -a $master_log $verbose_log
+            echo -e "$(logDate) > Starting another run, PID $$ $BASHPID" | tee -a $master_log $verbose_log
             #Invokes script and sends STDOUT from script to null
             /bin/bash "$base_directory"/scripts/core-loop.sh > /dev/null &
             # Simultaneously starts a timer before invoking script again
@@ -44,10 +44,10 @@ else
     echo -e "$(logDate) > initializer.sh invoked, running $script_iterations times" | tee -a $master_log $verbose_log
     echo -e "$(logDate) > Components enabled: CPU $cpu_enabled, RAM $ram_enabled, Network $network_enabled, Disk $disk_enabled" | tee -a $master_log $verbose_log
     echo -e "$(logDate) > Run times: $time_between_runs seconds between runs, min run time $minimum_run_time seconds and max run time $maximum_run_time seconds" | tee -a $master_log $verbose_log
-    echo -e "$(logDate) > PID: $$ $BASHPID"
+    echo -e "$(logDate) > PID: $$ $BASHPID" | tee -a $master_log $verbose_log
     while [[ $run_count_start -le $script_iterations ]]
     do
-        echo -e "$(logDate) > Running $run_count_start of $script_iterations iterations" | tee -a $master_log $verbose_log
+        echo -e "$(logDate) > Running $run_count_start of $script_iterations iterations, PID $$ $BASHPID" | tee -a $master_log $verbose_log
         /bin/bash "$base_directory"/scripts/core-loop.sh > /dev/null &
         sleep $time_between_runs
         let ++run_count_start
