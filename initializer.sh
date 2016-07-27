@@ -53,3 +53,6 @@ else
         let ++run_count_start
     done
 fi
+
+wait
+echo -e "$(logDate) > initializer.sh exited" | tee -a $master_log $verbose_log
