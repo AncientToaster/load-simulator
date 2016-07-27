@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Generates CPU load on the system
+
+# Calculate a maximum amount of CPU to occupy
+cpu_limit=$(echo "$maximum_cpu_percentage * .01" | bc)
+
 # Runs an individual CPU job
 function cpuJob {
     # Import the arguments as variables. $1 is job ID, $2 is load level, $3 is run time
@@ -23,10 +28,12 @@ function cpuStress {
     # Call both CPU jobs and run them at the same time
     # Run the higher CPU job
     long_job_time=$(shuf -i $minimum_run_time-$maximum_run_time -n 1)
-    cpuJob 1 $(shuf -i 20-30 -n 1) $long_job_time &
+    long_job_load=$(shuf -i $(echo "$cpu_limit * 40" | bc)-$(echo "$cpu_limit * 60" | bc) -n 1)
+    cpuJob 1 $long_job_load $long_job_time &
     # Run the shorter CPU job
     short_job_time=$(shuf -i $(echo "$maximum_run_time * .0625" | bc)-$(echo "$maximum_run_time * .66667" | bc) -n 1)
-    cpuJob 2 $(shuf -i 5-20 -n 1) $short_job_time
+    short_job_load=$(shuf -i $(echo "$cpu_limit * 10" | bc)-$(echo "$cpu_limit * 40" | bc) -n 1)
+    cpuJob 2 $short_job_load $short_job_time
     wait
     echo -e "$(logDate) >> Finished: CPU run $cpu_run_id" | tee -a $verbose_log $cpu_log
 }
